@@ -60,14 +60,14 @@ public class UserDAO extends DAO implements ICRUD<User> {
 		}
 	}
 
-	public void delete(User object) throws Exception {
+	public void delete(User obj) throws Exception {
 		try {
 			super.begin();
-            super.getSession().delete(object);
+            super.getSession().delete(obj);
             super.commit();
         } catch (HibernateException e) {
         	super.rollback();
-            throw new Exception("Could not delete user: " + object.getLogin(), e);
+            throw new Exception("Could not delete user: " + obj.getLogin(), e);
         } finally {
 			if (super.getSession() != null && super.getSession().isOpen()) {
 				super.getSession().close();
